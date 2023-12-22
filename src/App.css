@@ -1,7 +1,14 @@
 .App {
-  text-align: center;
+  position: relative;
+  display: flex;
+  margin: auto;
+  /* height: 100vh; */
+  justify-content: center;
+  background: linear-gradient(12.69deg, #e55758 21.38%, #e55599 95.86%);
+  background-size: cover;
+  background-position: center;
+  max-width: 100%;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +42,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.bg_login{
+  background-image: url('assets/header.png');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
 }
