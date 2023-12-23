@@ -1,8 +1,7 @@
-.App {
+/* .App {
   position: relative;
   display: flex;
   margin: auto;
-  /* height: 100vh; */
   justify-content: center;
   background: linear-gradient(12.69deg, #e55758 21.38%, #e55599 95.86%);
   background-size: cover;
@@ -12,7 +11,7 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
+} */
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
