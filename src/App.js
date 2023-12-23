@@ -15,8 +15,8 @@ function App() {
           { id: 3, value: 'options1' },
           { id: 4, value: 'options1' },
         ],
-        answer: '',
-        correct_answer: 1,
+        answer: [false, false, false, false],
+        correct_answer: [false, true, false, false],
         status: '',
       },
       {
@@ -27,8 +27,8 @@ function App() {
           { id: 3, value: 'options1' },
           { id: 4, value: 'options1' },
         ],
-        answer: '',
-        correct_answer: 2,
+        answer: [false, false, false, false],
+        correct_answer: [false, true, false, false],
         status: '',
       },
       {
@@ -39,8 +39,8 @@ function App() {
           { id: 3, value: 'options1' },
           { id: 4, value: 'options1' },
         ],
-        answer: '',
-        correct_answer: 3,
+        answer: [false, false, false, false],
+        correct_answer: [false, true, false, false],
         status: '',
       },
     ],
@@ -53,8 +53,8 @@ function App() {
           { id: 3, value: 'options1' },
           { id: 4, value: 'options1' },
         ],
-        answer: '',
-        correct_answer: 1,
+        answer: [false, false, false, false],
+        correct_answer: [false, true, false, false],
         status: '',
       },
       {
@@ -65,8 +65,8 @@ function App() {
           { id: 3, value: 'options1' },
           { id: 4, value: 'options1' },
         ],
-        answer: '',
-        correct_answer: 2,
+        answer: [false, false, false, false],
+        correct_answer: [false, true, false, false],
         status: '',
       },
     ],
@@ -79,8 +79,8 @@ function App() {
           { id: 3, value: 'options1' },
           { id: 4, value: 'options1' },
         ],
-        answer: '',
-        correct_answer: 1,
+        answer: [false, false, false, false],
+        correct_answer: [false, true, false, false],
         status: '',
       },
       {
@@ -91,8 +91,8 @@ function App() {
           { id: 3, value: 'options1' },
           { id: 4, value: 'options1' },
         ],
-        answer: '',
-        correct_answer: 2,
+        answer: [false, false, false, false],
+        correct_answer: [false, true, false, false],
         status: '',
       },
     ],
@@ -110,12 +110,30 @@ function App() {
     2: ['salt4', 'salt5'],
   })
 
-  const onChangeAnswer = (value, index) => {
-    // console.log("checking", value, index)
+  const onChangeAnswer = (e) => {
+    const [currentPage_index, Question_index, option_index] = e.target.name.split("_");
     const question = { ...Questions }
-    question[currentPage][index].answer = value
-    // console.log("checking", question)
+    const tempvalues = new Array(4).fill(
+      false
+    );
+    tempvalues[option_index] = true;
+    question[currentPage_index][Question_index].answer = tempvalues;
+    // // console.log("checking", question)
     setQuestions(question)
+  }
+
+  function arraysAreEqual(array1, array2) {
+    if (array1.length !== array2.length) {
+      return false;
+    }
+
+    for (let i = 0; i < array1.length; i++) {
+      if (array1[i] !== array2[i]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
   const onValidate = () => {
@@ -131,10 +149,9 @@ function App() {
       const question = { ...Questions }
       let flag = false
       for (let i = 0; i < question[currentPage].length; i++) {
-        // console.log("checkin", question[currentPage][i])
-        if (
-          question[currentPage][i].answer ===
-          question[currentPage][i].correct_answer
+        console.log("checkin", question[currentPage][i])
+        if (arraysAreEqual(question[currentPage][i].answer, question[currentPage][i].correct_answer)
+
         ) {
           question[currentPage][i].status = '1'
         } else {
@@ -154,28 +171,32 @@ function App() {
     const shuffledArray = [...array] // Create a new array to avoid modifying the original
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      ;[shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ]
+        ;[shuffledArray[i], shuffledArray[j]] = [
+          shuffledArray[j],
+          shuffledArray[i],
+        ]
     }
     return shuffledArray
   }
   return (
-    <>
+    <div className='w-full' id="particle-js">
+      <div className="flex w-full">
+
+      </div>
       {submit ? (
         // {last page submit page}
         <div className='flex flex-col relative  w-full items-center justify-center'>
-          <img src={Home} alt='home' title='h' />
+          {/* <img src={Home} alt='home' title='h' /> */}
           <p className='absolute'>Submitted</p>
         </div>
       ) : (
         <>
           {home ? (
             // {home page}
-            <div className='flex flex-col relative  w-full items-center justify-center'>
-              <img src={Home} alt='home' title='h' />
-              <div className='absolute'>
+            <div className='flex flex-col relative gap-5 h-[90vh]  w-full items-center justify-center'>
+              {/* <img src={Home} alt='home' title='h' /> */}
+              <p className="w-[70%] shadow-xl p-5 rounded-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div className=''>
                 <button
                   onClick={() => setHome(false)}
                   className={` text-[#001437]  bg-[#BCFB46] hover:bg-transparent hover:border-yellow-100 hover:text-[#a0db32]  rounded-lg 
@@ -183,11 +204,7 @@ function App() {
                 >
                   Start Quiz
                 </button>
-                <h1 class='text-2xl font-semibold leading normal text-white mt-3'>
-                  sxsfdsgdf text-[#001437] bg-[#BCFB46] hover:bg-[#001437]
-                  hover:text-[#a0db32] rounded-lg md:text-[16px] font-bold
-                  md:px-6 text-sm text-md px-6 py-2 rounded-full text-center
-                </h1>
+
               </div>
             </div>
           ) : (
@@ -212,33 +229,50 @@ function App() {
                 <p className='text-xl shadow-md py-2 px-3 bg-cyan-300'>
                   Quiz 1
                 </p>
-                {console.log('chjeckkc', Questions['0'])}
-                {Questions[currentPage].map((q, index) => (
-                  <div className='pl-3 pb-3'>
-                    <div className='flex items-center'>
-                      <p className="text-lg py-2 font-['Poppins']">
-                        {q.question}
-                      </p>
-                      {q.status === '0' ? (
-                        <span className='text-red-500 px-3'>*Wrong answer</span>
-                      ) : null}
-                      {q.status === '1' ? (
-                        <span className='text-green-500 px-3'>
-                          *Correct answer
-                        </span>
-                      ) : null}
-                    </div>
-                    <input
-                      className='border-2 border-gray-300 block px-2.5 pb-2 pt-2 w-full text-sm  bg-transparent rounded appearance-none focus:outline-none focus:ring-0 peer'
-                      id='q1'
-                      name='q1'
-                      value={q.answer}
-                      onChange={(e) => onChangeAnswer(e.target.value, index)}
-                      type='text'
-                      placeholder='Answer here...'
-                    />
+                {/* {console.log('chjeckkc', Questions['0'])} */}
+                <div className='flex gap-20'>
+                  <div>
+                    {Questions[currentPage].map((q, index) => (
+                      <div className='pl-3 pb-3 flex flex-col' key={`questions_${index}`}>
+                        <div className='flex items-center'>
+                          <p className="text-lg py-2 font-['Poppins']">
+                            {q.question}
+                          </p>
+                          {q.status === '0' ? (
+                            <span className='text-red-500 px-3'>*Wrong answer</span>
+                          ) : null}
+                          {q.status === '1' ? (
+                            <span className='text-green-500 px-3'>
+                              *Correct answer
+                            </span>
+                          ) : null}
+                        </div>
+                        {console.log("checkingasdasdas", q.options)}
+                        {q.options.map((data, ind) => (
+                          <div key={ind} className="flex items-center mb-3">
+                            <input
+                              className="w-4 h-4 m-2 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                              type="radio"
+                              name={`${currentPage}_${index}_${ind}`}
+                              id="checker"
+                              checked={q.answer[ind]}
+                              value={ind}
+                              onChange={(e) => onChangeAnswer(e)}
+
+                            />
+
+                            <label
+                              className="block border min-w-[400px] rounded-lg  border-blue-400 px-2 py-1  text-sm font-medium text-gray-900"
+
+                            >{data.value}</label>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
                   </div>
-                ))}
+                  <p className="w-[70%] shadow-xl p-5 rounded-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                </div>
               </div>
               <div className='flex gap-x-3'>
                 <button
@@ -255,7 +289,17 @@ function App() {
                 >
                   {canMove ? 'Next Page' : 'Check Your answer'}
                 </button>
-                {currentPage > 0 ?? (
+                {console.log("hsdfjsdf", currentPage, Object.keys(Questions).length)}
+                {(currentPage < Object.keys(Questions).length - 1) ? (
+                  <button
+                    onClick={() => setCurrentPage((prev) => prev + 1)}
+                    className={`text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg 
+              md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer  `}
+                  >
+                    Next Page
+                  </button>
+                ) : null}
+                {(currentPage > 0) ? (
                   <button
                     onClick={() => setCurrentPage((prev) => prev - 1)}
                     disabled={currentPage <= 0}
@@ -264,7 +308,7 @@ function App() {
                   >
                     Prev page
                   </button>
-                )}
+                ) : null}
               </div>
               {showHints ? (
                 <div className='flex px-2 py-1 m-2 gap-2 border border-slate-300 rounded-lg'>
@@ -279,7 +323,7 @@ function App() {
           )}
         </>
       )}
-    </>
+    </div>
   )
 }
 
