@@ -249,12 +249,12 @@ function App() {
                         </div>
                         {console.log("checkingasdasdas", q.options)}
                         {q.options.map((data, ind) => (
-                          <div key={ind} className="flex items-center mb-3">
+                          <div key={ind} className="flex hover:cursor-pointer  items-center mb-3">
                             <input
-                              className="w-4 h-4 m-2 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500"
+                              className="w-4 h-4 m-2 text-blue-600 bg-gray-100 hover:bg-blue-300 rounded border-gray-300 focus:ring-blue-500"
                               type="radio"
                               name={`${currentPage}_${index}_${ind}`}
-                              id="checker"
+                              id={`checker_${currentPage}_${index}_${ind}`}
                               checked={q.answer[ind]}
                               value={ind}
                               onChange={(e) => onChangeAnswer(e)}
@@ -262,7 +262,8 @@ function App() {
                             />
 
                             <label
-                              className="block border min-w-[400px] rounded-lg  border-blue-400 px-2 py-1  text-sm font-medium text-gray-900"
+                              htmlFor={`checker_${currentPage}_${index}_${ind}`}
+                              className="block border min-w-[400px] hover:cursor-pointer rounded-lg hover:bg-blue-300  border-blue-400 px-2 py-1  text-sm font-medium text-gray-900"
 
                             >{data.value}</label>
                           </div>
