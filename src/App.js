@@ -2,6 +2,8 @@ import logo from './logo.svg'
 import './App.css'
 import header from './assets/header.png'
 import Pic from './assets/pic1.jpg'
+import Pic2 from './assets/dad_joke.jpg'
+
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Particles, { initParticlesEngine } from '@tsparticles/react'
@@ -370,14 +372,14 @@ function App() {
 
   const scrollToBottom = async () => {
     await setShowHints((prev) => !prev)
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight
+    const documentHeight = document.documentElement.scrollHeight
 
     window.scrollTo({
       top: documentHeight - windowHeight,
-      behavior: 'smooth' // Optional: Add smooth scrolling behavior
-    });
-  };
+      behavior: 'smooth', // Optional: Add smooth scrolling behavior
+    })
+  }
 
   const onChangeAnswer = (e) => {
     const [currentPage_index, Question_index, option_index] =
@@ -442,10 +444,10 @@ function App() {
     const shuffledArray = [...array] // Create a new array to avoid modifying the original
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-        ;[shuffledArray[i], shuffledArray[j]] = [
-          shuffledArray[j],
-          shuffledArray[i],
-        ]
+      ;[shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ]
     }
     return shuffledArray
   }
@@ -540,12 +542,12 @@ function App() {
                   </button>
                 </div>
                 <div className='flex  flex-col relative  w-full items-center justify-center'>
-                  <img src={header} alt='home' title='h' className="w-full" />
+                  <img src={header} alt='home' title='h' className='w-full' />
                   <button
                     onClick={() => setHome(false)}
                     className={`absolute md:text-[100px] text-[25px] bg-black text-white rounded-lg px-2`}
                   >
-                    Pro Tradition
+                    POPRADATION
                   </button>
                 </div>
                 <div className='md:pt-4 pt-2 md:pb-4 pb-2 flex z-10 flex-col'>
@@ -602,6 +604,9 @@ function App() {
                     </div>
                     {currentPage === 0 ? (
                       <p className='w-full h-[250px]  overflow-auto md:h-full  shadow-xl p-5 mt-3 rounded-lg md:mt-12'>
+                        <h2 className='font-bold'>
+                          - what happens before the separation
+                        </h2>
                         <h1 className='font-bold'>Pop: </h1>What if I'm not just
                         an easy-peasy word, but an oxford companion to be cool
                         why don't you try and understand me?{' '}
@@ -619,19 +624,23 @@ function App() {
                         know games are really my kinda thing.{' '}
                         <h1 className='font-bold'>Trad:</h1> Do I ever have a
                         choice?
+                        <img src={Pic} alt='pic1' className='w-full pt-2' />
                         <h1 className='font-bold'>Pop:</h1>
-                        <img src={Pic} alt='pic1' className='w-full' />
                         Offcourse not (give me a hi-fi) It's my world and thank
-                        me for letting you live in it.{' '}
-                        <h1 className='font-bold'>Pop:</h1> Just kidding. Take a
-                        chill-pill till the time I get you a husband-wife joke
-                        from the WhatsApp university. You have no idea how
-                        hilarious they have become. For your taste buds I’ll
-                        pick something moderate-{' '}
+                        me for letting you live in it. Just kidding. Take a
+                        chill-pill till the time I get you a dad joke from the
+                        WhatsApp university. You have no idea how hilarious they
+                        have become. For your taste buds I’ll pick something
+                        moderate{' '}
+                        <img
+                          src={Pic2}
+                          alt='dad_joke'
+                          className='w-full pt-2'
+                        />
                         <h1 className='font-bold'>Trad:</h1> Is this all a joke
                         to you? For joke is something you’ve been always
                         concerned about. <h1 className='font-bold'>Pop:</h1>
-                        Why so serious bro? Take a chill pill or make yourself anu
+                        Why so serious bro? Take a chill pill or make yourself a
                         cup of ‘Dalgona Coffee’. Don’t tell me you haven’t heard
                         of it? <h1 className='font-bold'>Trad: </h1>No, I
                         haven't nor I intend to. Happy with the confined space I
@@ -651,7 +660,6 @@ function App() {
                         legen-wait-for-it-dary couple”. Chuck it, let's
                         understand this in your language we are like Dante and
                         Beatrice.
-                        <img src={Pic} alt='pic1' className='w-full' />
                         <h1 className='font-bold'>Trad:</h1> I doubt! Though we
                         do have a similarity with them like you know me so well
                         just like Dante was aware of her beloved and I like
