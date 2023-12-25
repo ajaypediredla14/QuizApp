@@ -1,7 +1,7 @@
 const particlesConfig1 = {
   background: {
     color: {
-      value: "#fff",
+      value: '#F99DBC',
     },
   },
   fpsLimit: 120,
@@ -9,11 +9,11 @@ const particlesConfig1 = {
     events: {
       onClick: {
         enable: true,
-        mode: "push",
+        mode: 'push',
       },
       onHover: {
         enable: true,
-        mode: "repulse",
+        mode: 'repulse',
       },
       resize: true,
     },
@@ -29,20 +29,20 @@ const particlesConfig1 = {
   },
   particles: {
     color: {
-      value: "#000",
+      value: '#000',
     },
     links: {
-      color: "#000",
+      color: '#000',
       distance: 150,
       enable: true,
       opacity: 0.5,
       width: 1,
     },
     move: {
-      direction: "none",
+      direction: 'none',
       enable: true,
       outModes: {
-        default: "bounce",
+        default: 'bounce',
       },
       random: false,
       speed: 6,
@@ -59,7 +59,7 @@ const particlesConfig1 = {
       value: 0.5,
     },
     shape: {
-      type: "circle",
+      type: 'circle',
     },
     size: {
       value: { min: 1, max: 5 },
@@ -68,5 +68,4 @@ const particlesConfig1 = {
   detectRetina: true,
 }
 
-
-export default particlesConfig1;
+export default particlesConfig1

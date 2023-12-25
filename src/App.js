@@ -1,11 +1,11 @@
 import logo from './logo.svg'
 import './App.css'
 import header from './assets/header.png'
-import Home from './assets/home.jpg'
+import Pic from './assets/pic1.jpg'
 import { useState } from 'react'
-import { useEffect } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
+import { useEffect } from 'react'
+import Particles, { initParticlesEngine } from '@tsparticles/react'
+import { loadSlim } from '@tsparticles/slim'
 import particlesConfig from './particlesConfig'
 import particlesConfig1 from './particlesConfig_copy'
 
@@ -245,7 +245,7 @@ function App() {
         options: [
           { id: 1, value: 'The Crown' },
           { id: 2, value: 'Downton Abbey' },
-          { id: 3, value: 'Bridgerton          ' },
+          { id: 3, value: 'Bridgerton' },
           { id: 4, value: 'Peaky Blinders' },
         ],
         answer: [false, false, false, false],
@@ -304,32 +304,6 @@ function App() {
         status: '',
       },
     ],
-    2: [
-      {
-        question: '1. what is present in toothpaste?3',
-        options: [
-          { id: 1, value: 'options1' },
-          { id: 2, value: 'options1' },
-          { id: 3, value: 'options1' },
-          { id: 4, value: 'options1' },
-        ],
-        answer: [false, false, false, false],
-        correct_answer: [false, true, false, false],
-        status: '',
-      },
-      {
-        question: '2. what is present in toothpaste?3',
-        options: [
-          { id: 1, value: 'options1' },
-          { id: 2, value: 'options1' },
-          { id: 3, value: 'options1' },
-          { id: 4, value: 'options1' },
-        ],
-        answer: [false, false, false, false],
-        correct_answer: [false, true, false, false],
-        status: '',
-      },
-    ],
   })
 
   const [currentPage, setCurrentPage] = useState(0)
@@ -339,11 +313,34 @@ function App() {
   const [home, setHome] = useState(true)
 
   const [answers, setAnswers] = useState({
-    0: ['salt', 'salt1'],
-    1: ['salt2', 'salt3'],
-    2: ['salt4', 'salt5'],
+    0: [
+      'Harry Potter',
+      'Nineteen Eighty-Four',
+      'Sherlock Holmes',
+      '"Chaska Meter" (from Bhool Bhulaiyaa 2)',
+      'A Suitable Boy',
+      'Khatron Ke Khiladi',
+      'Jhalak Dikhhla Jaa',
+      'Nihilism (Rick and Morty)',
+      'Reddit',
+      'Leonardo DiCaprio',
+      'Madonna',
+    ],
+    1: [
+      'Distracted Boyfriend',
+      'BTS & Coldplay',
+      '"Jiggle Jiggle" by Duke & Jones & Louis York',
+      'Barbie',
+      'Dwayne "The Rock" Johnson',
+      'The Lord of the Rings: The Fellowship of the Ring',
+      'Bridgerton',
+      ' Breaking Bad',
+      'Dr. Luke',
+      'As It Was" by Harry Styles',
+      ' Chris Martin',
+    ],
   })
-  const [init, setInit] = useState(false);
+  const [init, setInit] = useState(false)
 
   // this should be run only once per application lifetime
   useEffect(() => {
@@ -353,41 +350,47 @@ function App() {
       // starting from v2 you can add only the features you need reducing the bundle size
       //await loadAll(engine);
       //await loadFull(engine);
-      await loadSlim(engine);
+      await loadSlim(engine)
       //await loadBasic(engine);
     }).then(() => {
-      setInit(true);
-    });
-  }, []);
+      setInit(true)
+    })
+  }, [])
 
   const particlesLoaded = (container) => {
-    console.log(container);
-  };
+    console.log(container)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // Optional: Add smooth scrolling behavior
+    })
+  }
 
   const onChangeAnswer = (e) => {
-    const [currentPage_index, Question_index, option_index] = e.target.name.split("_");
+    const [currentPage_index, Question_index, option_index] =
+      e.target.name.split('_')
     const question = { ...Questions }
-    const tempvalues = new Array(4).fill(
-      false
-    );
-    tempvalues[option_index] = true;
-    question[currentPage_index][Question_index].answer = tempvalues;
+    const tempvalues = new Array(4).fill(false)
+    tempvalues[option_index] = true
+    question[currentPage_index][Question_index].answer = tempvalues
     // // console.log("checking", question)
     setQuestions(question)
   }
 
   function arraysAreEqual(array1, array2) {
     if (array1.length !== array2.length) {
-      return false;
+      return false
     }
 
     for (let i = 0; i < array1.length; i++) {
       if (array1[i] !== array2[i]) {
-        return false;
+        return false
       }
     }
 
-    return true;
+    return true
   }
 
   const onValidate = () => {
@@ -403,9 +406,12 @@ function App() {
       const question = { ...Questions }
       let flag = false
       for (let i = 0; i < question[currentPage].length; i++) {
-        console.log("checkin", question[currentPage][i])
-        if (arraysAreEqual(question[currentPage][i].answer, question[currentPage][i].correct_answer)
-
+        console.log('checkin', question[currentPage][i])
+        if (
+          arraysAreEqual(
+            question[currentPage][i].answer,
+            question[currentPage][i].correct_answer
+          )
         ) {
           question[currentPage][i].status = '1'
         } else {
@@ -425,32 +431,29 @@ function App() {
     const shuffledArray = [...array] // Create a new array to avoid modifying the original
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-        ;[shuffledArray[i], shuffledArray[j]] = [
-          shuffledArray[j],
-          shuffledArray[i],
-        ]
+      ;[shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ]
     }
     return shuffledArray
   }
 
-
-
   return (
     <div className=' relative'>
-
       {submit ? (
         <div className='flex flex-col relative bg-white gap-5 h-[90vh] items-center justify-center'>
           <Particles
-            className="absolute"
-            id="tsparticles"
+            className='absolute'
+            id='tsparticles'
             particlesLoaded={particlesLoaded}
             options={particlesConfig}
             style={{ zIndex: 1 }} // Set a lower zIndex for particles
           />
-          <div className="flex  flex-col z-10 items-center justify-center gap-5"> {/* Set a higher zIndex for content */}
-
+          <div className='flex  flex-col z-10 items-center justify-center gap-5'>
+            {' '}
+            {/* Set a higher zIndex for content */}
             <div>
-
               <button
                 className={`text-[#001437] text-[80px] border   bg-[#BCFB46] hover:bg-transparent  hover:text-[#a0db32]  font-bold md:px-6  px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer`}
               >
@@ -462,59 +465,64 @@ function App() {
       ) : (
         <>
           {home ? (
-            <div className='flex flex-col relative bg-white gap-5 h-[90vh] items-center justify-center'>
+            <div className='flex flex-col relative App gap-5 h-screen items-center justify-center'>
               <Particles
-                className="absolute"
-                id="tsparticles"
+                className='absolute'
+                id='tsparticles'
                 particlesLoaded={particlesLoaded}
                 options={particlesConfig}
                 style={{ zIndex: 1 }} // Set a lower zIndex for particles
               />
-              <div className="flex  flex-col z-10 items-center justify-center gap-5"> {/* Set a higher zIndex for content */}
-                <p className="w-[70%] shadow-xl bg-white p-5 rounded-lg">
+              <div className='flex  flex-col z-10 items-center justify-center gap-5'>
+                {' '}
+                {/* Set a higher zIndex for content */}
+                <h1 className=' text-black w-[100%] text-2xl p-5 rounded-lg '>
                   Attention, pop culture aficionados! Hold onto your fandom hats
                   and trivia trophies, folks, because we're diving deep into the
                   captivating world of engagement! In the vibrant playground of
                   pop culture, where attention spans are shorter than TikTok
-                  dances and trends shift faster than a superhero's cape, one tool
-                  reigns supreme: The Quiz. So, Buckle up, because we're about to
-                  dive into the irresistible context of pop culture itself! This
-                  is no mere academic exercise, friends. We'll explore the magic
-                  behind shared passions, the thrill of friendly rivalry, the
-                  sneaky charm of disguised learning, and the contagious joy of
-                  pure, unadulterated play while side by side you keep reading my
-                  take on popular culture (No worries if you got the options wrong
-                  my writings will still be a takeaway) In screens aglow, and
-                  minds ablaze, Where trivia's torch forever plays, Popular
-                  culture weaves its spell, With quiz and game, a vibrant shell.
-                  Let's unleash the quiz, Are you ready?
-                </p>
+                  dances and trends shift faster than a superhero's cape, one
+                  tool reigns supreme:
+                </h1>
+                <h1 className=' text-black w-[100%] text-2xl p-5 rounded-lg '>
+                  The Quiz. So, Buckle up, because we're about to dive into the
+                  irresistible context of pop culture itself! This is no mere
+                  academic exercise, friends. We'll explore the magic behind
+                  shared passions, the thrill of friendly rivalry, the sneaky
+                  charm of disguised learning, and the contagious joy of pure,
+                  unadulterated play while side by side you keep reading my take
+                  on popular culture (No worries if you got the options wrong my
+                  writings will still be a takeaway){' '}
+                </h1>
+                <h1 className=' text-black w-[100%] text-2xl p-5 rounded-lg '>
+                  In screens aglow, and minds ablaze, Where trivia's torch
+                  forever plays, Popular culture weaves its spell, With quiz and
+                  game, a vibrant shell. Let's unleash the quiz, Are you ready?
+                </h1>
                 <div>
-
                   <button
                     onClick={() => setHome(false)}
-                    className={`text-[#001437] border hover:border-[#BCFB46]  bg-[#BCFB46] hover:bg-transparent  hover:text-[#a0db32] md:text-[16px] font-bold md:px-6 text-sm text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer`}
+                    className={`text-[#001437] border hover:border-[#ff7db8]  bg-[#ff7db8] hover:bg-transparent  hover:text-[#ee2a7b] md:text-[16px] font-bold md:px-6 text-sm text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer`}
                   >
                     Start Quiz
                   </button>
                 </div>
               </div>
             </div>
-
           ) : (
             <div className='relative p-2 px-20'>
               <Particles
-                className="absolute"
-                id="tsparticles"
+                className='absolute'
+                id='tsparticles'
                 particlesLoaded={particlesLoaded}
                 options={particlesConfig1}
                 style={{ zIndex: 1 }} // Set a lower zIndex for particles
               />
-              <div className="flex flex-col">
-                <div className="z-10">
+              <div className='flex flex-col'>
+                <div className='z-10'>
                   <button
                     onClick={() => setHome(true)}
-                    className={`   my-2 text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
+                    className={`   my-2 text-[#001437]  bg-[#ff7db8] hover:bg-[#001437] hover:text-[##ee2a7b]  rounded-lg
               md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 text-center font-['nunito'] cursor-pointer  `}
                   >
                     Home
@@ -529,21 +537,24 @@ function App() {
                     Pro Tradition
                   </button>
                 </div>
-                <div className='flex z-10 flex-col'>
-                  <p className='text-xl shadow-md py-2 px-3 bg-cyan-300'>
-                    Quiz 1
-                  </p>
+                <div className='pt-4 pb-4 flex z-10 flex-col'>
+                  <p className='text-xl shadow-md py-2 px-3 bg-#F99DBC'>Quiz</p>
                   {/* {console.log('chjeckkc', Questions['0'])} */}
-                  <div className='flex gap-20'>
-                    <div>
+                  <div className='p-4 flex gap-20'>
+                    <div className='bg-[#F99DBC]'>
                       {Questions[currentPage].map((q, index) => (
-                        <div className='pl-3 pb-3 flex flex-col' key={`questions_${index}`}>
+                        <div
+                          className='pl-3 pb-3 flex flex-col'
+                          key={`questions_${index}`}
+                        >
                           <div className='flex  items-center'>
                             <p className="text-lg py-2 font-['Poppins']">
                               {q.question}
                             </p>
                             {q.status === '0' ? (
-                              <span className='text-red-500 px-3'>*Wrong answer</span>
+                              <span className='text-red-500 px-3'>
+                                *Wrong answer
+                              </span>
                             ) : null}
                             {q.status === '1' ? (
                               <span className='text-green-500 px-3'>
@@ -551,38 +562,259 @@ function App() {
                               </span>
                             ) : null}
                           </div>
-                          {console.log("checkingasdasdas", q.options)}
+                          {console.log('checkingasdasdas', q.options)}
                           {q.options.map((data, ind) => (
-                            <div key={ind} className="flex hover:cursor-pointer  items-center mb-3">
+                            <div
+                              key={ind}
+                              className='flex hover:cursor-pointer  items-center mb-3'
+                            >
                               <input
-                                className="w-4 h-4 m-2 text-blue-600 bg-gray-100 hover:bg-blue-300 rounded border-gray-300 focus:ring-blue-500"
-                                type="radio"
+                                className='w-4 h-4 m-2 text-blue-600 bg-gray-100 hover:bg-blue-300 rounded border-gray-300 focus:ring-blue-500'
+                                type='radio'
                                 name={`${currentPage}_${index}_${ind}`}
                                 id={`checker_${currentPage}_${index}_${ind}`}
                                 checked={q.answer[ind]}
                                 value={ind}
                                 onChange={(e) => onChangeAnswer(e)}
-
                               />
 
                               <label
                                 htmlFor={`checker_${currentPage}_${index}_${ind}`}
-                                className="block bg-white border min-w-[400px] hover:cursor-pointer rounded-lg hover:bg-blue-300  border-blue-400 px-2 py-1  text-sm font-medium text-gray-900"
-
-                              >{data.value}</label>
+                                className='block bg-white border min-w-[400px] hover:cursor-pointer rounded-lg hover:bg-blue-300  border-blue-400 px-2 py-1  text-sm font-medium text-gray-900'
+                              >
+                                {data.value}
+                              </label>
                             </div>
                           ))}
                         </div>
                       ))}
                     </div>
-                    <p className="w-[70%] bg-white shadow-xl p-5 rounded-lg">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    {currentPage === 0 ? (
+                      <p className='w-[60%]  shadow-xl p-5 rounded-lg mt-12'>
+                        <h1 className='font-bold'>Pop: </h1>What if I'm not just
+                        an easy-peasy word, but an oxford companion to be cool
+                        why don't you try and understand me?{' '}
+                        <h1 className='font-bold'>Trad:</h1> Oh, you son of a
+                        palindrome! Pride of holding a ticket to your own
+                        wonderland, makes me wonder if you at all realise you
+                        first grew as my counter movement but soon you started
+                        taking my sons and daughters into your realm of
+                        "traditional popular”?{' '}
+                        <h1 className='font-bold'>Pop:</h1>
+                        Oh, Trad you sad? I can't stop my urge to dedicate you a
+                        "moye moye" reel. You gotta see it. Also, on that
+                        palindrome thing I got pretty offended. Call me anything
+                        but not the boring maths. How about tic tac toe, you
+                        know games are really my kinda thing.{' '}
+                        <h1 className='font-bold'>Trad:</h1> Do I ever have a
+                        choice?
+                        <h1 className='font-bold'>Pop:</h1>
+                        <img src={Pic} alt='pic1' className='w-full' />
+                        Offcourse not (give me a hi-fi) It's my world and thank
+                        me for letting you live in it.{' '}
+                        <h1 className='font-bold'>Pop:</h1> Just kidding. Take a
+                        chill-pill till the time I get you a husband-wife joke
+                        from the WhatsApp university. You have no idea how
+                        hilarious they have become. For your taste buds I’ll
+                        pick something moderate-{' '}
+                        <h1 className='font-bold'>Trad:</h1> Is this all a joke
+                        to you? For joke is something you’ve been always
+                        concerned about. <h1 className='font-bold'>Pop:</h1>
+                        Why so serious bro? Take a chill pill or make yourself a
+                        cup of ‘Dalgona Coffee’. Don’t tell me you haven’t heard
+                        of it? <h1 className='font-bold'>Trad: </h1>No, I
+                        haven't nor I intend to. Happy with the confined space I
+                        have for sharing the narratives.
+                        <h1 className='font-bold'>Pop:</h1> Babe, you got to be
+                        creative. Ain't there any fun in telling the Norse sagas
+                        and legends when you can grab some popcorn and watch the
+                        whole goddammit Vikings!!!{' '}
+                        <h1 className='font-bold'>Trad:</h1> I seriously don't
+                        think, this is going to work out.{' '}
+                        <h1 className='font-bold'>Pop:</h1>
+                        “Don't go, don't— Don't go, don't go” as Justin Bieber
+                        would call it. <h1 className='font-bold'>Trad:</h1> We
+                        are so different. Our languages are different. It's just
+                        complicated. <h1 className='font-bold'>Pop: </h1>Honey,
+                        we are like Barney Stinson and Robin Scherbatsky "a
+                        legen-wait-for-it-dary couple”. Chuck it, let's
+                        understand this in your language we are like Dante and
+                        Beatrice.
+                        <img src={Pic} alt='pic1' className='w-full' />
+                        <h1 className='font-bold'>Trad:</h1> I doubt! Though we
+                        do have a similarity with them like you know me so well
+                        just like Dante was aware of her beloved and I like
+                        Beatrice (hadn't met Dante more than twice) have no clue
+                        about you. <h1 className='font-bold'>Pop:</h1> How about
+                        I make you a list of pop music, shows ranging from Young
+                        Sheldon to The family man, from Darlings to Animal, from
+                        Taylor Swift to Lady Gaga and what not so you get to
+                        know me better before hopping on to a conclusion and you
+                        know I just can't hang on to something for long(that is
+                        just who I am) so let's catch up later maybe. I have a
+                        lot of work piled up on my ChatGPT-Ah! I can't even ask
+                        AI to write a poem on how to "convince your partner to
+                        give one more chance to their relationship". AI is a
+                        part of me too. This sucks. Sometimes I wish I was like
+                        you. I was you. Just sometimes.{' '}
+                        <h1 className='font-bold'>Fun fact:</h1> There is no
+                        such thing like ‘Popradation’. I made this up using-
+                        Pop+rad(traditional)+ation(conversation) Indirect
+                        reference to popular culture in the above conversation-
+                        Robin and Barney from the popular sitcom How I met your
+                        mother, meme-Why so serious bro, TV show- Vikings,
+                        popular trends on Instagram during covid like Dalgona
+                        and the other references are quite direct and are
+                        mentioned then and there.
+                      </p>
+                    ) : null}
+                    {currentPage === 1 ? (
+                      <p className='w-[70%]  shadow-xl p-5 rounded-lg mt-12'>
+                        <h1 className='font-bold'>Popping the Answer</h1>
 
+                        <h1 className='font-bold'>
+                          {' '}
+                          We still breathing out of a tube
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          Or living for eighty and four years
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          Or that tube blows some life stranded
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          The tools are coming in eight shades
+                        </h1>
+                        <h1 className='font-bold'>
+                          Tools of life,adding an year and again an year
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          Lend me your ear while you gnaw{' '}
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          Protest against the shades and the rights
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          Both have come in a single wash of the wave
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          You want your woods to not seep water
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          You want your ocean to touch not sky{' '}
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          Well when you popped babe after babe
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          Did you pop the idea or any plan did you bade{' '}
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          What shall they eat and what shall they earn{' '}
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          It’s not some riddle for which you yearn
+                        </h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          blocks on the earths face
+                        </h1>
+                        <h1 className='font-bold'> colours on the wall </h1>
+                        <h1 className='font-bold'> food for the babe</h1>
+                        <h1 className='font-bold'> and shade of a hall</h1>
+                        <h1 className='font-bold'>
+                          {' '}
+                          what did you say to the ways of the world?
+                        </h1>
+                      </p>
+                    ) : null}
+                    {currentPage === 2 ? (
+                      <p className='w-[60%]  shadow-xl p-5 rounded-lg mt-12'>
+                        <h1 className='font-bold'>Pop:</h1>
+                        Oh, Trad you sad? I can't stop my urge to dedicate you a
+                        "moye moye" reel. You gotta see it. Also, on that
+                        palindrome thing I got pretty offended. Call me anything
+                        but not the boring maths. How about tic tac toe, you
+                        know games are really my kinda thing.{' '}
+                        <h1 className='font-bold'>Trad:</h1> Do I ever have a
+                        choice?
+                        <h1 className='font-bold'>Pop:</h1>
+                        <img src={Pic} alt='pic1' className='w-full' />
+                        Offcourse not (give me a hi-fi) It's my world and thank
+                        me for letting you live in it.{' '}
+                        <h1 className='font-bold'>Pop:</h1> Just kidding. Take a
+                        chill-pill till the time I get you a husband-wife joke
+                        from the WhatsApp university. You have no idea how
+                        hilarious they have become. For your taste buds I’ll
+                        pick something moderate-{' '}
+                        <h1 className='font-bold'>Trad:</h1> Is this all a joke
+                        to you? For joke is something you’ve been always
+                        concerned about. <h1 className='font-bold'>Pop:</h1>
+                        Why so serious bro? Take a chill pill or make yourself a
+                        cup of ‘Dalgona Coffee’. Don’t tell me you haven’t heard
+                        of it? <h1 className='font-bold'>Trad: </h1>No, I
+                        haven't nor I intend to. Happy with the confined space I
+                        have for sharing the narratives.
+                        <h1 className='font-bold'>Pop:</h1> Babe, you got to be
+                        creative. Ain't there any fun in telling the Norse sagas
+                        and legends when you can grab some popcorn and watch the
+                        whole goddammit Vikings!!!{' '}
+                        <h1 className='font-bold'>Trad:</h1> I seriously don't
+                        think, this is going to work out.{' '}
+                        <h1 className='font-bold'>Pop:</h1>
+                        “Don't go, don't— Don't go, don't go” as Justin Bieber
+                        would call it. <h1 className='font-bold'>Trad:</h1> We
+                        are so different. Our languages are different. It's just
+                        complicated. <h1 className='font-bold'>Pop: </h1>Honey,
+                        we are like Barney Stinson and Robin Scherbatsky "a
+                        legen-wait-for-it-dary couple”. Chuck it, let's
+                        understand this in your language we are like Dante and
+                        Beatrice.
+                        <h1 className='font-bold'>Trad:</h1> I doubt! Though we
+                        do have a similarity with them like you know me so well
+                        just like Dante was aware of her beloved and I like
+                        Beatrice (hadn't met Dante more than twice) have no clue
+                        about you. <h1 className='font-bold'>Pop:</h1> How about
+                        I make you a list of pop music, shows ranging from Young
+                        Sheldon to The family man, from Darlings to Animal, from
+                        Taylor Swift to Lady Gaga and what not so you get to
+                        know me better before hopping on to a conclusion and you
+                        know I just can't hang on to something for long(that is
+                        just who I am) so let's catch up later maybe. I have a
+                        lot of work piled up on my ChatGPT-Ah! I can't even ask
+                        AI to write a poem on how to "convince your partner to
+                        give one more chance to their relationship". AI is a
+                        part of me too. This sucks. Sometimes I wish I was like
+                        you. I was you. Just sometimes.{' '}
+                        <h1 className='font-bold'>Fun fact:</h1> There is no
+                        such thing like ‘Popradation’. I made this up using-
+                        Pop+rad(traditional)+ation(conversation) Indirect
+                        reference to popular culture in the above conversation-
+                        Robin and Barney from the popular sitcom How I met your
+                        mother, meme-Why so serious bro, TV show- Vikings,
+                        popular trends on Instagram during covid like Dalgona
+                        and the other references are quite direct and are
+                        mentioned then and there.
+                      </p>
+                    ) : null}
                   </div>
                 </div>
                 <div className='flex z-10 gap-x-3'>
                   <button
                     onClick={() => setShowHints((prev) => !prev)}
-                    className={`text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
+                    className={`text-[#001437]  bg-white hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
               md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer  `}
                   >
                     {showHints ? 'Hide hints' : 'Show hints'}
@@ -594,19 +826,29 @@ function App() {
                   >
                     {canMove ? 'Next Page' : 'Check Your answer'}
                   </button>
-                  {console.log("hsdfjsdf", currentPage, Object.keys(Questions).length)}
-                  {(currentPage < Object.keys(Questions).length - 1) ? (
+                  {console.log(
+                    'hsdfjsdf',
+                    currentPage,
+                    Object.keys(Questions).length
+                  )}
+                  {currentPage < Object.keys(Questions).length - 1 ? (
                     <button
-                      onClick={() => setCurrentPage((prev) => prev + 1)}
+                      onClick={() => {
+                        setCurrentPage((prev) => prev + 1)
+                        scrollToTop()
+                      }}
                       className={`text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
               md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer  `}
                     >
                       Next Page
                     </button>
                   ) : null}
-                  {(currentPage > 0) ? (
+                  {currentPage > 0 ? (
                     <button
-                      onClick={() => setCurrentPage((prev) => prev - 1)}
+                      onClick={() => {
+                        setCurrentPage((prev) => prev - 1)
+                        scrollToTop()
+                      }}
                       disabled={currentPage <= 0}
                       className={`text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
               md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 text-center font-['nunito'] cursor-pointer  `}
@@ -616,9 +858,12 @@ function App() {
                   ) : null}
                 </div>
                 {showHints ? (
-                  <div className='flex bg-white z-10 px-2 py-1 m-2 gap-2 border border-slate-300 rounded-lg'>
+                  <div className='flex bg-white z-10 px-2 py-1 m-6 gap-2 border border-slate-300 rounded-lg'>
                     {shuffleArray(answers[currentPage]).map((answer, index) => (
-                      <span className='py-0.5 px-2 bg-green-600 rounded-lg text-lg'>
+                      <span
+                        className='py-0.5 px-2 bg-white rounded-lg text-lg'
+                        key={`answers_${index}`}
+                      >
                         {answer}
                       </span>
                     ))}
@@ -634,4 +879,3 @@ function App() {
 }
 
 export default App
-
