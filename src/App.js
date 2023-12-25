@@ -631,7 +631,7 @@ function App() {
                         <h1 className='font-bold'>Trad:</h1> Is this all a joke
                         to you? For joke is something you’ve been always
                         concerned about. <h1 className='font-bold'>Pop:</h1>
-                        Why so serious bro? Take a chill pill or make yourself a
+                        Why so serious bro? Take a chill pill or make yourself anu
                         cup of ‘Dalgona Coffee’. Don’t tell me you haven’t heard
                         of it? <h1 className='font-bold'>Trad: </h1>No, I
                         haven't nor I intend to. Happy with the confined space I
