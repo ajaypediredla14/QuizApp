@@ -368,6 +368,17 @@ function App() {
     })
   }
 
+  const scrollToBottom = async () => {
+    await setShowHints((prev) => !prev)
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+
+    window.scrollTo({
+      top: documentHeight - windowHeight,
+      behavior: 'smooth' // Optional: Add smooth scrolling behavior
+    });
+  };
+
   const onChangeAnswer = (e) => {
     const [currentPage_index, Question_index, option_index] =
       e.target.name.split('_')
@@ -431,10 +442,10 @@ function App() {
     const shuffledArray = [...array] // Create a new array to avoid modifying the original
     for (let i = shuffledArray.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1))
-      ;[shuffledArray[i], shuffledArray[j]] = [
-        shuffledArray[j],
-        shuffledArray[i],
-      ]
+        ;[shuffledArray[i], shuffledArray[j]] = [
+          shuffledArray[j],
+          shuffledArray[i],
+        ]
     }
     return shuffledArray
   }
@@ -473,10 +484,10 @@ function App() {
                 options={particlesConfig}
                 style={{ zIndex: 1 }} // Set a lower zIndex for particles
               />
-              <div className='flex  flex-col z-10 items-center justify-center gap-5'>
+              <div className='flex  flex-col z-10 items-center justify-center gap-5 md:p-5 p-3'>
                 {' '}
                 {/* Set a higher zIndex for content */}
-                <h1 className=' text-black w-[100%] text-2xl p-5 rounded-lg '>
+                <h1 className=' text-black w-[100%] md:text-2xl text-md  rounded-lg font-["nunito"] '>
                   Attention, pop culture aficionados! Hold onto your fandom hats
                   and trivia trophies, folks, because we're diving deep into the
                   captivating world of engagement! In the vibrant playground of
@@ -484,7 +495,7 @@ function App() {
                   dances and trends shift faster than a superhero's cape, one
                   tool reigns supreme:
                 </h1>
-                <h1 className=' text-black w-[100%] text-2xl p-5 rounded-lg '>
+                <h1 className=' text-black w-[100%] md:text-2xl text-md  rounded-lg font-["nunito"]'>
                   The Quiz. So, Buckle up, because we're about to dive into the
                   irresistible context of pop culture itself! This is no mere
                   academic exercise, friends. We'll explore the magic behind
@@ -494,7 +505,7 @@ function App() {
                   on popular culture (No worries if you got the options wrong my
                   writings will still be a takeaway){' '}
                 </h1>
-                <h1 className=' text-black w-[100%] text-2xl p-5 rounded-lg '>
+                <h1 className=' text-black w-[100%] md:text-2xl text-md  rounded-lg font-["nunito"]'>
                   In screens aglow, and minds ablaze, Where trivia's torch
                   forever plays, Popular culture weaves its spell, With quiz and
                   game, a vibrant shell. Let's unleash the quiz, Are you ready?
@@ -502,7 +513,7 @@ function App() {
                 <div>
                   <button
                     onClick={() => setHome(false)}
-                    className={`text-[#001437] border hover:border-[#ff7db8]  bg-[#ff7db8] hover:bg-transparent  hover:text-[#ee2a7b] md:text-[16px] font-bold md:px-6 text-sm text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer`}
+                    className={`text-[#001437] hover:bg-[#001437]  border hover:border-[#ff7db8]  bg-[#ff7db8]   hover:text-[#ee2a7b] md:text-[16px] font-bold md:px-6 text-sm text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer`}
                   >
                     Start Quiz
                   </button>
@@ -510,7 +521,7 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className='relative p-2 px-20'>
+            <div className='relative p-2 md:px-20 px-1'>
               <Particles
                 className='absolute'
                 id='tsparticles'
@@ -522,51 +533,51 @@ function App() {
                 <div className='z-10'>
                   <button
                     onClick={() => setHome(true)}
-                    className={`   my-2 text-[#001437]  bg-[#ff7db8] hover:bg-[#001437] hover:text-[##ee2a7b]  rounded-lg
+                    className={`   my-2 text-[#001437]  bg-[#ff7db8] hover:bg-[#001437] hover:text-[#ff7db8]  rounded-lg
               md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 text-center font-['nunito'] cursor-pointer  `}
                   >
                     Home
                   </button>
                 </div>
                 <div className='flex  flex-col relative  w-full items-center justify-center'>
-                  <img src={header} alt='home' title='h' />
+                  <img src={header} alt='home' title='h' className="w-full" />
                   <button
                     onClick={() => setHome(false)}
-                    className={`absolute text-[100px] bg-black text-white rounded-lg px-2`}
+                    className={`absolute md:text-[100px] text-[25px] bg-black text-white rounded-lg px-2`}
                   >
                     Pro Tradition
                   </button>
                 </div>
-                <div className='pt-4 pb-4 flex z-10 flex-col'>
+                <div className='md:pt-4 pt-2 md:pb-4 pb-2 flex z-10 flex-col'>
                   <p className='text-xl shadow-md py-2 px-3 bg-#F99DBC'>Quiz</p>
                   {/* {console.log('chjeckkc', Questions['0'])} */}
-                  <div className='p-4 flex gap-20'>
+                  <div className='md:p-4  flex md:flex-row flex-col-reverse md:gap-20 gap-5'>
                     <div className='bg-[#F99DBC]'>
                       {Questions[currentPage].map((q, index) => (
                         <div
-                          className='pl-3 pb-3 flex flex-col'
+                          className='md:pl-3 md:pb-3 pl-2 flex flex-col'
                           key={`questions_${index}`}
                         >
-                          <div className='flex  items-center'>
-                            <p className="text-lg py-2 font-['Poppins']">
+                          <div className='flex   md:items-center'>
+                            <p className="md:text-lg text-md md:py-2 pt-2 font-['Poppins']">
                               {q.question}
+                              {q.status === '0' ? (
+                                <span className='text-red-600 md:px-3'>
+                                  *Wrong answer
+                                </span>
+                              ) : null}
+                              {q.status === '1' ? (
+                                <span className='text-green-500 md:px-3'>
+                                  *Correct answer
+                                </span>
+                              ) : null}
                             </p>
-                            {q.status === '0' ? (
-                              <span className='text-red-500 px-3'>
-                                *Wrong answer
-                              </span>
-                            ) : null}
-                            {q.status === '1' ? (
-                              <span className='text-green-500 px-3'>
-                                *Correct answer
-                              </span>
-                            ) : null}
                           </div>
                           {console.log('checkingasdasdas', q.options)}
                           {q.options.map((data, ind) => (
                             <div
                               key={ind}
-                              className='flex hover:cursor-pointer  items-center mb-3'
+                              className='flex hover:cursor-pointer  items-center md:mb-3 mb-2'
                             >
                               <input
                                 className='w-4 h-4 m-2 text-blue-600 bg-gray-100 hover:bg-blue-300 rounded border-gray-300 focus:ring-blue-500'
@@ -580,7 +591,7 @@ function App() {
 
                               <label
                                 htmlFor={`checker_${currentPage}_${index}_${ind}`}
-                                className='block bg-white border min-w-[400px] hover:cursor-pointer rounded-lg hover:bg-blue-300  border-blue-400 px-2 py-1  text-sm font-medium text-gray-900'
+                                className='block bg-white border min-w-[300px] md:min-w-[400px] hover:cursor-pointer rounded-lg hover:bg-blue-300  border-blue-400 px-2 py-1  text-sm font-medium text-gray-900'
                               >
                                 {data.value}
                               </label>
@@ -590,7 +601,7 @@ function App() {
                       ))}
                     </div>
                     {currentPage === 0 ? (
-                      <p className='w-[60%]  shadow-xl p-5 rounded-lg mt-12'>
+                      <p className='w-full h-[250px]  overflow-auto md:h-full  shadow-xl p-5 mt-3 rounded-lg md:mt-12'>
                         <h1 className='font-bold'>Pop: </h1>What if I'm not just
                         an easy-peasy word, but an oxford companion to be cool
                         why don't you try and understand me?{' '}
@@ -669,7 +680,7 @@ function App() {
                       </p>
                     ) : null}
                     {currentPage === 1 ? (
-                      <p className='w-[70%]  shadow-xl p-5 rounded-lg mt-12'>
+                      <p className='w-full h-[250px]  overflow-auto md:h-full  shadow-xl p-5 mt-3 rounded-lg md:mt-12'>
                         <h1 className='font-bold'>Popping the Answer</h1>
 
                         <h1 className='font-bold'>
@@ -741,7 +752,7 @@ function App() {
                       </p>
                     ) : null}
                     {currentPage === 2 ? (
-                      <p className='w-[60%]  shadow-xl p-5 rounded-lg mt-12'>
+                      <p className='w-full h-[250px]  overflow-auto md:h-full  shadow-xl p-5 mt-3 rounded-lg md:mt-12'>
                         <h1 className='font-bold'>Pop:</h1>
                         Oh, Trad you sad? I can't stop my urge to dedicate you a
                         "moye moye" reel. You gotta see it. Also, on that
@@ -811,18 +822,18 @@ function App() {
                     ) : null}
                   </div>
                 </div>
-                <div className='flex z-10 gap-x-3'>
+                <div className='flex z-10 md:pl-5 md:gap-x-3 gap-1'>
                   <button
-                    onClick={() => setShowHints((prev) => !prev)}
+                    onClick={() => scrollToBottom()}
                     className={`text-[#001437]  bg-white hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
-              md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer  `}
+              md:text-[16px] font-bold md:px-6 text-sm  text-md px-2 py-2  text-center font-['nunito'] cursor-pointer  `}
                   >
                     {showHints ? 'Hide hints' : 'Show hints'}
                   </button>
                   <button
                     onClick={() => onValidate()}
                     className={`text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
-              md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer  `}
+              md:text-[16px] font-bold md:px-6 text-sm  text-md px-2 py-2  text-center font-['nunito'] cursor-pointer  `}
                   >
                     {canMove ? 'Next Page' : 'Check Your answer'}
                   </button>
@@ -838,9 +849,9 @@ function App() {
                         scrollToTop()
                       }}
                       className={`text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
-              md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 rounded-full text-center font-['nunito'] cursor-pointer  `}
+              md:text-[16px] font-bold md:px-6 text-sm  text-md px-2 py-2 text-center font-['nunito'] cursor-pointer  `}
                     >
-                      Next Page
+                      Skip
                     </button>
                   ) : null}
                   {currentPage > 0 ? (
@@ -851,21 +862,21 @@ function App() {
                       }}
                       disabled={currentPage <= 0}
                       className={`text-[#001437]  bg-[#BCFB46] hover:bg-[#001437] hover:text-[#a0db32]  rounded-lg
-              md:text-[16px] font-bold md:px-6 text-sm  text-md px-6 py-2 text-center font-['nunito'] cursor-pointer  `}
+              md:text-[16px] font-bold md:px-6 text-sm  text-md px-2 py-2 text-center font-['nunito'] cursor-pointer  `}
                     >
                       Prev page
                     </button>
                   ) : null}
                 </div>
                 {showHints ? (
-                  <div className='flex bg-white z-10 px-2 py-1 m-6 gap-2 border border-slate-300 rounded-lg'>
+                  <div className='flex flex-wrap bg-white z-10 md:px-2 px-1 py-1 md:m-6 m-2 gap-2 border border-slate-300 rounded-lg'>
                     {shuffleArray(answers[currentPage]).map((answer, index) => (
-                      <span
-                        className='py-0.5 px-2 bg-white rounded-lg text-lg'
+                      <p
+                        className='py-0.5 px-2 bg-pink-300 rounded-lg md:text-lg text-md'
                         key={`answers_${index}`}
                       >
                         {answer}
-                      </span>
+                      </p>
                     ))}
                   </div>
                 ) : null}
